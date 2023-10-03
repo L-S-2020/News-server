@@ -1,0 +1,26 @@
+{% extends 'header.html'  %}
+
+{% block header %}
+    <title>{{ title }}</title>
+    {% with categories=categories %}
+        {{ block.super }}
+    {% endwith %}
+{% endblock %}
+
+{% block content %}
+    <div class="container align-items-center align-content-center align-self-center">
+        <div class="row">
+            <div class="col"><a href="/">Startseite</a> > <a href="{{ article.category.url }}">{{ article.category.name }}</a> > <a href="{{ article.topic.url }}">{{ article.topic.name }}</a> > {{ article.title }}</div>
+        </div>
+        <p class="fw-lighter">{{ article.date }}</p><img class="img-fluid my-auto" src="{{ article.image.url }}" />
+        <h1>{{ article.title }}</h1>
+        <p class="fw-semibold">{{ article.description }}</p>
+        <p>{{ article.content }}</p>
+        <p class="fw-lighter">{{ article.source.name }}</p>
+        <p class="fw-light d-xxl-flex">
+            {% for tag in article.tags.all %}
+            {{ tag.name }}
+            {% endfor %}
+        </p>
+    </div>
+{% endblock %}
