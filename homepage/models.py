@@ -12,6 +12,7 @@ class Article(models.Model):
     tags = models.ManyToManyField('tag', blank=True)
     category = models.ForeignKey('Category', on_delete=models.CASCADE, null=True, blank=True)
     topic = models.ForeignKey('Topic', on_delete=models.CASCADE, null=True, blank=True)
+    article_id = models.TextField()
 
     def __str__(self):
         return self.title
