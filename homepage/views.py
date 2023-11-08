@@ -51,10 +51,11 @@ def uploadArticle(request):
             content = request.POST.get("content")
             source = request.POST.get("source")
             url = request.POST.get("url")
+            image = request.FILES['image']
             article_id = request.POST.get("article_id")
             kat = Category.objects.get(name="Politik")
             topic = Topic.objects.get(name="Inland")
-            Article.objects.create(title=title, description=description, content=content, source=source, article_id=article_id, category=kat, topic=topic)
+            Article.objects.create(title=title, description=description, content=content, source=source, article_id=article_id, category=kat, topic=topic, image=image)
             tags = str(request.POST.get("tags"))
             tags = tags.split(",")
             for t in tags:

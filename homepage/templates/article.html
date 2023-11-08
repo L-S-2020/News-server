@@ -15,7 +15,7 @@
         <p class="fw-lighter">{{ article.date }}</p><img class="img-fluid my-auto" src="{{ article.image.url }}" />
         <h1>{{ article.title }}</h1>
         <p class="fw-semibold">{{ article.description }}</p>
-        <p>{{ article.content }}</p>
+        <p style="font-size: 20px;">{{ article.content }}</p>
         <p class="fw-lighter">{{ article.source.name }}</p>
         <p class="fw-light d-xxl-flex">
             {% for tag in article.tags.all %}
