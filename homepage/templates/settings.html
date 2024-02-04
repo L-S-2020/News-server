@@ -1,0 +1,23 @@
+{% extends 'header.html'  %}
+{% load account %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h1>Konto verwalten</h1>
+                <p>Aktionen</p>
+                <a href="/accounts/password/change">Passwort ändern</a>
+                <br>
+                <br>
+                <a href="/accounts/email">Email-Adresse ändern</a>
+            </div>
+            <div class="col-md-8">
+                <h1>👋 Hallo {% user_display user %}</h1>
+                <p>Herzlich Willkommen bei News.</p>
+                <p>Dein Account wurde am {{ user.date_joined|date:"d.m.Y" }} erstellt.</p>
+                <p>Deine Email-Adresse ist {{ user.email }}.</p>
+                <p>Hier kannst du deinen Account anpassen.</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

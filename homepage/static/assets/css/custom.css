@@ -1,0 +1,47 @@
+/*
+ * Copyright (c) $today.year.Leonard Stegle
+ * All rights reserved
+ * Alle Rechte vorbehalten
+ */
+
+/* CSS for Starrating to make the radiobuttons look like stars */
+.rating > input {
+    display: none;
+}
+
+.rating {
+    display : inline-block;
+    border: 0;
+}
+
+.rating > label{
+    float: right;
+}
+
+.rating > label:before{
+    margin: 0;
+    font-size: 1.1em;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005";
+    cursor: pointer;
+    padding: 0.3rem .2rem;
+}
+
+/* half star trick */
+.rating .half:before{
+    content: "\f089";
+    position: absolute;
+    padding-right: 0;
+}
+
+/* hover effect */
+input:checked ~ label, label:hover ~ label{
+    color: #e7d576;
+}
+
+/* hover highlight */
+input:checked + label:hover, input:checked ~ label:hover, input:checked ~ label:hover ~ label,
+label:hover ~ input:checked ~ label{
+    color: #FFD700;
+}

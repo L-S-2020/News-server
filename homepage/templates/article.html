@@ -1,7 +1,9 @@
 {% extends 'header.html'  %}
+{% load static %}
 
 {% block header %}
     <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'fontawesomefree/css/all.min.css' %}">
     {% with categories=categories %}
         {{ block.super }}
     {% endwith %}
@@ -22,5 +24,49 @@
             {{ tag.name }}
             {% endfor %}
         </p>
+        <br>
+        <h3>Bewerte diesen Artikel</h3>
+        <form method="POST" class="post-form">{% csrf_token %}
+        <div class="rating">
+            <input type="radio" name="rating" id="rating-10" value="5">
+            <label for="rating-10" title="5"></label>
+            <input type="radio" name="rating" id="rating-9" value="4.5">
+            <label for="rating-9" title="4.5" class="half"></label>
+            <input type="radio" name="rating" id="rating-8" value="4">
+            <label for="rating-8" title="4"></label>
+            <input type="radio" name="rating" id="rating-7" value="3.5">
+            <label for="rating-7" title="3.5" class="half"></label>
+            <input type="radio" name="rating" id="rating-6" value="3">
+            <label for="rating-6" title="3"></label>
+            <input type="radio" name="rating" id="rating-5" value="2.5">
+            <label for="rating-5" title="2.5" class="half"></label>
+            <input type="radio" name="rating" id="rating-4" value="2">
+            <label for="rating-4" title="2"></label>
+            <input type="radio" name="rating" id="rating-3" value="1.5">
+            <label for="rating-3" title="1.5" class="half"></label>
+            <input type="radio" name="rating" id="rating-2" value="1">
+            <label for="rating-2" title="1"></label>
+            <input type="radio" name="rating" id="rating-1" value="0.5">
+            <label for="rating-1" title="0.5" class="half"></label>
+        </div>
+        <br>
+        <br>
+        <h5>Wer hat diesen Artikel geschrieben?</h5>
+        <br>
+        <div class="autor">
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-primary">
+                    <input type="radio" name="identifiziert" id="identifiziert-0" value="mensch">Mensch
+                </label>
+            </div>
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-primary">
+                    <input type="radio" name="identifiziert" id="identifiziert-0" value="ai">künstliche Intelligenz
+                </label>
+            </div>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary" role="button">Speichern</button>
+    </form>
     </div>
 {% endblock %}

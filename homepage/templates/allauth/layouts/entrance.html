@@ -1,0 +1,14 @@
+{% extends "allauth/layouts/base.html" %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h1>Heading</h1>
+            <p>Paragraph</p><a href="#">Link</a>
+        </div>
+        <div class="col-md-8">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</div>

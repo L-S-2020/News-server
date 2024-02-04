@@ -1,0 +1,86 @@
+{% extends 'header.html'  %}
+{% load static %}
+
+{% block header %}
+    <title>Live Daten</title>
+    <script src="{% static 'assets/chart.umd.js' %}"></script>
+    {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+    <h1 id="titel">Abgegebene Bewertungen: 230</h1>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div>
+                    <canvas id="bewertungen"></canvas>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <canvas id="identifiziert"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <canvas id="bewertungen"></canvas>
+
+    <script>
+        const ctx = document.getElementById('bewertungen');
+
+         const bar_bewerungen = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Durchschnitt', 'GPT-3.5', 'Mistral-7b', 'Mensch',],
+                datasets: [{
+                    label: 'Durchschnittliche Bewertung',
+                    data: [0, 0, 0, 0,],
+                    borderWidth: 1
+                    }]
+                },
+            options: {
+                scales: {
+                y: {
+                beginAtZero: true,
+                max: 5
+                }
+            }
+            }
+        });
+
+         const ptz = document.getElementById('identifiziert');
+
+         const pie_quiz = new Chart(ptz, {
+            type: 'pie',
+            data: {
+                labels: ['richtig', 'falsch'],
+                datasets: [{
+                    label: 'Anzahl der Bewertungen',
+                    data: [0, 0],
+                    borderWidth: 1
+                    }]
+                },
+        });
+
+        function aktualisieren() {
+            fetch('/api/aktualisieren')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                document.getElementById('titel').innerHTML = 'Abgegebene Bewertungen: ' + data.anzahl;
+                // update chart without creating a new one
+                bar_bewerungen.data.datasets[0].data = [data.durchschnitt, data.gpt, data.mistral, data.mensch];
+                bar_bewerungen.update();
+                pie_quiz.data.datasets[0].data = [data.richtig, data.falsch];
+                pie_quiz.update();
+
+
+            })
+            // update titel
+        }
+
+        setInterval(aktualisieren, 1000);
+    </script>
+{% endblock %}
