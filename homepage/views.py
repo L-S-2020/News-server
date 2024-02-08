@@ -17,15 +17,19 @@ def article(request, article_id, category, topic):
             guess = form.cleaned_data["identifiziert"]
             article = Article.objects.get(id=article_id)
             art = article.art
-            if guess == art:
+            if guess == 'ai' and art == 'gpt' or guess == 'ai' and art == 'mistral' or guess == 'mensch' and art == 'mensch':
                 richtig = True
+                messages.success(request, "Richtig!" )
             else:
                 richtig = False
+                messages.error(request, "Falsch!" )
             if request.user.is_authenticated:
                 Bewertung.objects.create(article=article, rating=rating, user=request.user, art=art, identifiziert=guess, richtig=richtig)
             else:
                 Bewertung.objects.create(article=article, rating=rating, user=None, art=art, identifiziert=guess, richtig=richtig)
-            messages.success(request, "Bewertung erfolgreich abgegeben!")
+            messages.success(request, "Bewertung erfolgreich abgegeben!" )
+        else:
+            messages.error(request, "Bewertung konnte nicht abgegeben werden!" )
     categories = Category.objects.all().prefetch_related("topics")
     article = Article.objects.get(id=article_id)
     title = article.category.name + " - " + article.topic.name + " - " + article.title
@@ -86,6 +90,7 @@ def uploadArticle(request):
             article_id = request.POST.get("article_id")
             kat = Category.objects.get(name="Politik")
             topic = Topic.objects.get(name="Inland")
+            art = request.POST.get("art")
             Article.objects.create(title=title, description=description, content=content, source=source, article_id=article_id, category=kat, topic=topic, image=image, sichtbar=False)
             tags = str(request.POST.get("tags"))
             tags = tags.split(",")

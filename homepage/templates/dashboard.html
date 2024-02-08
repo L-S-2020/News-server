@@ -71,7 +71,7 @@
                 console.log(data)
                 document.getElementById('titel').innerHTML = 'Abgegebene Bewertungen: ' + data.anzahl;
                 // update chart without creating a new one
-                bar_bewerungen.data.datasets[0].data = [data.durchschnitt, data.gpt, data.mistral, data.mensch];
+                bar_bewerungen.data.datasets[0].data = [data.durchschnitt, data.durchschnitt_gpt, data.durchschnitt_mistral, data.durchschnitt_mensch];
                 bar_bewerungen.update();
                 pie_quiz.data.datasets[0].data = [data.richtig, data.falsch];
                 pie_quiz.update();
