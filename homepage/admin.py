@@ -12,7 +12,6 @@ def make_sichtbar(modeladmin, request, queryset):
 # Register your models here.
 
 admin.site.register(Category)
-admin.site.register(Topic)
 admin.site.register(Tag)
 # zeige unter Bewertung den Artikel an
 @admin.register(Bewertung)
@@ -23,7 +22,7 @@ class BewertungAdmin(admin.ModelAdmin):
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ("article_id", "sichtbar","title", "category", "topic", "date", )
-    list_filter = ("category", "topic", "sichtbar",)
+    list_display = ("article_id", "sichtbar","title", "category", "date", )
+    list_filter = ("category", "sichtbar",)
     search_fields = ("title", "category", "topic",)
     actions = [make_unsichtbar, make_sichtbar]

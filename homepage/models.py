@@ -11,8 +11,7 @@ class Article(models.Model):
     image = models.ImageField(upload_to="media/", null=True, blank=True, default="media/default.jpg")
     tags = models.ManyToManyField('Tag', blank=True)
     category = models.ForeignKey('Category', on_delete=models.CASCADE, null=True, blank=True)
-    topic = models.ForeignKey('Topic', on_delete=models.CASCADE, null=True, blank=True)
-    article_id = models.CharField(max_length=100, null=True, blank=True)
+    article_id = models.CharField(max_length=500, null=True, blank=True)
     sichtbar = models.BooleanField(default=False)
     art = models.CharField(max_length=20, null=True, blank=True)
 
@@ -20,7 +19,7 @@ class Article(models.Model):
         return self.title
 
     def url(self):
-        url = "/article/" + self.category.name + "/" + self.topic.name + "/" + str(self.id)
+        url = "/article/" + self.category.name + "/" + str(self.id)
         return url
 
 class Tag(models.Model):
@@ -31,8 +30,8 @@ class Tag(models.Model):
         return self.name
 
 class Category(models.Model):
+    id = models.CharField(max_length=15, primary_key=True)
     name = models.CharField(max_length=100)
-    topics = models.ManyToManyField('Topic', blank=True, related_name="categories")
     description = models.TextField(null=True, blank=True)
 
     def __str__(self):
@@ -40,16 +39,6 @@ class Category(models.Model):
 
     def url(self):
         url = "/article/" + self.name
-        return url
-class Topic(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField(null=True, blank=True)
-
-    def __str__(self):
-        return self.name
-
-    def url(self):
-        url = "/article/" + Category.objects.get(topics=self).name + "/" + self.name
         return url
 
 class Bewertung(models.Model):

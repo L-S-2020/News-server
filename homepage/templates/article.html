@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block header %}
+    <!DOCTYPE html>
     <title>{{ title }}</title>
     <link rel="stylesheet" href="{% static 'fontawesomefree/css/all.min.css' %}">
     {% with categories=categories %}
@@ -12,12 +13,13 @@
 {% block content %}
     <div class="container align-items-center align-content-center align-self-center">
         <div class="row">
-            <div class="col"><a href="/">Startseite</a> > <a href="{{ article.category.url }}">{{ article.category.name }}</a> > <a href="{{ article.topic.url }}">{{ article.topic.name }}</a> > {{ article.title }}</div>
+            <div class="col"><a href="/">Startseite</a> > <a href="{{ article.category.url }}">{{ article.category.name }}</a> > {{ article.title }}</div>
         </div>
-        <p class="fw-lighter">{{ article.date }}</p><img class="img-fluid my-auto" src="{{ article.image.url }}" />
+        <p class="fw-lighter">{{ article.date }}</p><img class="img-fluid my-auto" src="{{ article.image.url }}" style="height: 500px" />
         <h1>{{ article.title }}</h1>
-        <p class="fw-semibold">{{ article.description }}</p>
-        <p style="font-size: 20px;">{{ article.content }}</p>
+        <p class="fw-semibold" style="font-size: 20px">{{ article.description }}</p>
+        <br>
+        <p style="font-size: 20px;">{{ article.content| linebreaksbr }}</p>
         <p class="fw-lighter">{{ article.source.name }}</p>
         <p class="fw-light d-xxl-flex">
             {% for tag in article.tags.all %}

@@ -115,8 +115,7 @@
             <div class="collapse navbar-collapse" id="navcol-3">
                 <ul class="navbar-nav mx-auto">
                     {% for category in categories.all %}
-                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="{{ category.url }}">{{ category.name }}</a>
-                        <div class="dropdown-menu">{% for topic in category.topics.all %}<a class="dropdown-item" href="{{ topic.url }}">{{ topic.name }}</a>{% endfor %}</div>
+                    <li class="nav-item"><a class="nav-link" href="{{ category.url }}">{{ category.name }}</a>
                     </li>
                     {% endfor %}
                 </ul>

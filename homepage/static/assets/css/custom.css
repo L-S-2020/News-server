@@ -37,11 +37,11 @@
 
 /* hover effect */
 input:checked ~ label, label:hover ~ label{
-    color: #e7d576;
+    color: #FFD700;
 }
 
 /* hover highlight */
 input:checked + label:hover, input:checked ~ label:hover, input:checked ~ label:hover ~ label,
 label:hover ~ input:checked ~ label{
-    color: #FFD700;
+    color: #e7d576;
 }

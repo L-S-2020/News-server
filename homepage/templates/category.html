@@ -12,13 +12,7 @@
     <div class="row">
         <div class="col"><a href="/">Startseite</a> > {{ category.name }}</div>
     </div>
-    <div class="row">
-        <div class="col">
-            {% for topic in topics %}
-                <a href="{{ topic.url }}"> {{ topic.name }} </a>
-            {% endfor %}
-        </div>
-    </div>
+    <br>
     <div class="row mb-5">
         <div class="col-md-8 col-xl-6 text-center mx-auto">
             <h2> {{ category.name }}</h2>
@@ -29,7 +23,7 @@
         {% for article in articles %}
             <a href="{{ article.url }}">
                 <div class="col" >
-                    <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="{{ article.image.url }}" />
+                    <div class="card"><img class="card-img-top w-100 d-block fit-cover object-fit-sm-cover" style="height: 200px;" src="{{ article.image.url }}" />
                         <div class="card-body p-4">
                             <p class="text-primary card-text mb-0">{{ article.category }} > {{ article.topic }}</p>
                             <h4 class="card-title">{{ article.title }}</h4>

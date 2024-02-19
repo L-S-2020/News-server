@@ -5,11 +5,11 @@ from django.contrib import messages
 
 # Create your views here.
 def main(request):
-    categories = Category.objects.all().prefetch_related("topics")
-    articles = Article.objects.filter(sichtbar=True).order_by("-date")
+    categories = Category.objects.all()
+    articles = Article.objects.filter(sichtbar=True).order_by("-date")[:20]
     return render(request, "main.html", {"categories": categories, "articles": articles})
 
-def article(request, article_id, category, topic):
+def article(request, article_id, category,):
     if request.method == "POST":
         form = BewertungForm(request.POST)
         if form.is_valid():
@@ -30,25 +30,18 @@ def article(request, article_id, category, topic):
             messages.success(request, "Bewertung erfolgreich abgegeben!" )
         else:
             messages.error(request, "Bewertung konnte nicht abgegeben werden!" )
-    categories = Category.objects.all().prefetch_related("topics")
+    categories = Category.objects.all()
     article = Article.objects.get(id=article_id)
-    title = article.category.name + " - " + article.topic.name + " - " + article.title
+    title = article.category.name + " - " + article.title
     form = BewertungForm()
     return render(request, "article.html", {"categories": categories, "article": article, "title": title, "form": form})
 
-def topic(request, category, topic_name):
-    categories = Category.objects.all().prefetch_related("topics")
-    topic = Topic.objects.get(name__iexact=topic_name)
-    articles = Article.objects.filter(topic=topic, sichtbar=True)
-    category = Category.objects.get(name__iexact=category)
-    return render(request, "topic.html", {"categories": categories, "articles": articles, "topic": topic, "category": category})
 
 def category(request, category):
-    categories = Category.objects.all().prefetch_related("topics")
+    categories = Category.objects.all()
     cat = Category.objects.get(name__iexact=category)
     articles = Article.objects.filter(category=cat, sichtbar=True)
-    topics = cat.topics.all()
-    return render(request, "category.html", {"categories": categories, "articles": articles, "topics": topics, "category": cat})
+    return render(request, "category.html", {"categories": categories, "articles": articles, "category": cat})
 
 
 def settings(request):
@@ -88,10 +81,9 @@ def uploadArticle(request):
             source = request.POST.get("source")
             image = request.FILES['image']
             article_id = request.POST.get("article_id")
-            kat = Category.objects.get(name="Politik")
-            topic = Topic.objects.get(name="Inland")
+            kat = Category.objects.get(id=request.POST.get("kategorie"))
             art = request.POST.get("art")
-            Article.objects.create(title=title, description=description, content=content, source=source, article_id=article_id, category=kat, topic=topic, image=image, sichtbar=False)
+            Article.objects.create(title=title, description=description, content=content, source=source, article_id=article_id, category=kat, image=image, sichtbar=False, art=art)
             tags = str(request.POST.get("tags"))
             tags = tags.split(",")
             for t in tags:
