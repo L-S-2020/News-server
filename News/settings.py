@@ -159,7 +159,7 @@ MESSAGE_TAGS = {
         messages.ERROR: 'alert-danger',
  }
 
-
+# Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'stegle.eu'
 EMAIL_PORT = 587
