@@ -80,10 +80,16 @@ def dashboard(request):
 
 def newArticle(request, alt_id):
     # Hole Artikel mit wenigsten Bewertungen
-    articles = Article.objects.filter(sichtbar=True).exclude(id=alt_id).order_by("bewertungen")[:2]
+    if alt_id == 000:
+        articles = Article.objects.filter(sichtbar=True).order_by("bewertungen")[:2]
+    else:
+        articles = Article.objects.filter(sichtbar=True).exclude(id=alt_id).order_by("bewertungen")[:2]
     article = articles[0]
     # Weiterleitung zum Artikel
     return redirect(article.url())
+
+def welcome(request):
+    return render(request, "welcome.html")
 
 # Api zum Hochladen von Artikeln
 from django.views.decorators.csrf import csrf_exempt
