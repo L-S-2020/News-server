@@ -1,8 +1,8 @@
 # News-server
-AI News - Programmierprojekt 2023
+AI News - Jugend Forscht 2024
 
 Dieses Projekt besteht aus mehreren Reponsitories.
 
-Copyright (C) 2023 - Leonard Stegle
+Copyright (C) 2024 - Leonard Stegle
 All rights reserved
 Alle Rechte vorbehalten
