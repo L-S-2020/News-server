@@ -13,8 +13,12 @@
 {% block content %}
     <div class="container align-items-center align-content-center align-self-center">
         <div class="row">
-            <div class="col"><a href="/">Startseite</a> > <a href="{{ article.category.url }}">{{ article.category.name }}</a> > {{ article.title }}</div>
+            <div class="col"><a href="/">Startseite</a> > <a href="{{ article.category.url }}">{{ article.category.name }}</a> > {{ article.title }} </div>
+
         </div>
+        <br>
+        <div class="col; mx-auto; align-content-end"><a href="/neuerArtikel/{{ article.id }}" style="color: #a3cfbb" class="mx-auto" >Artikel überspringen</a></div>
+        <br>
         <p class="fw-lighter">{{ article.date }}</p><img class="img-fluid my-auto" src="{{ article.image.url }}" style="height: 500px" />
         <h1>{{ article.title }}</h1>
         <p class="fw-semibold" style="font-size: 20px">{{ article.description }}</p>

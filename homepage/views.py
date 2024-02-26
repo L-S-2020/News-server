@@ -35,6 +35,9 @@ def article(request, article_id, category,):
             else:
                 Bewertung.objects.create(article=article, rating=rating, user=None, art=art, identifiziert=guess, richtig=richtig)
             messages.success(request, "Bewertung erfolgreich abgegeben!" )
+            article.bewertungen += 1
+            article.save()
+            return redirect('/neuerArtikel/' + str(article.id))
         else:
             messages.error(request, "Bewertung konnte nicht abgegeben werden!" )
     # nehme Variabeln aus der Datenbank
@@ -74,6 +77,13 @@ def datenschutz(request):
 # Dashboard
 def dashboard(request):
     return render(request, "dashboard.html")
+
+def newArticle(request, alt_id):
+    # Hole Artikel mit wenigsten Bewertungen
+    articles = Article.objects.filter(sichtbar=True).exclude(id=alt_id).order_by("bewertungen")[:2]
+    article = articles[0]
+    # Weiterleitung zum Artikel
+    return redirect(article.url())
 
 # Api zum Hochladen von Artikeln
 from django.views.decorators.csrf import csrf_exempt

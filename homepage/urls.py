@@ -20,4 +20,6 @@ urlpatterns = [
     path("datenschutz/", views.datenschutz, name="datenschutz"),
     # Dashboard
     path("dashboard/", views.dashboard, name="dashboard"),
+    # Neuer Artikel
+    path("neuerArtikel/<int:alt_id>", views.newArticle, name="newArticle"),
 ]

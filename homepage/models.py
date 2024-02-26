@@ -28,6 +28,8 @@ class Article(models.Model):
     sichtbar = models.BooleanField(default=False)
     # Art des Artikels (z.B. GPT-3.5 oder Mistral)
     art = models.CharField(max_length=20, null=True, blank=True)
+    # Anzahl der Bewertungen des Artikels
+    bewertungen = models.IntegerField(default=0)
 
     # Gebe den Titel des Artikels zurück
     def __str__(self):
