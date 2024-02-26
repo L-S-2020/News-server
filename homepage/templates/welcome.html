@@ -1,3 +1,6 @@
+{% extends 'header.html'  %}
+{% load static %}
+
 {% block content %}
     <h1>Hallo 👋</h1>
     <p>Willkommen auf unserer DataCollection-Plattform für Jugend Forscht! 🚀 <br />Ihre Teilnahme an der Bewertung von Nachrichtenartikeln ist entscheidend für meine Forschungsarbeit. <br />Ihre Meinung zählt, und gemeinsam können wir einzigartige Einblicke gewinnen. <br />Die Daten werden anonymisiert und vertraulich behandelt. Danke, dass Sie Teil dieses Forschungsabenteuers sind und mithelfen, Jugend Forscht am GSG voranzutreiben!<br />Viel Spaß beim Bewerten der Artikel! 🌟<br /><br />Viele Grüße<br />Leonard<br /><br /></p>
@@ -5,6 +8,5 @@
     <h2>Wie funktionierts?</h2>
     <p></p>
     <p>Ihnen wird ein zufälliger Nachrichtenartikel angezeigt, diesen können Sie am Ende der Seite mit 0,5 bis 5 Sternen bewerten. Darüber hinaus, können Sie eine Einschätzung abgeben, ob der Artikel von einer künstlichen Intelligenz oder einem Menschen geschrieben wurde. Nach dem Speichern sehen Sie, ob Ihre Einschätzung richtig war und werden zum nächsten Artikel weitergeleitet.</p>
-    <button class="btn btn-primary" type="button" style="position: sticky;width: 90%;margin: 5%;">Start</button>
     <a class="btn btn-primary" role="button" style="position: sticky;width: 90%;margin: 5%;" href="/neuerArtikel/000">Start</a>
 {% endblock %}
