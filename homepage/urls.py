@@ -22,4 +22,6 @@ urlpatterns = [
     path("dashboard/", views.dashboard, name="dashboard"),
     # Neuer Artikel
     path("neuerArtikel/<int:alt_id>", views.newArticle, name="newArticle"),
+    # Willkommensseite
+    path("welcome/", views.welcome, name="welcome"),
 ]
