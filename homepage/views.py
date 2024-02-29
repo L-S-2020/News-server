@@ -145,7 +145,7 @@ def getBewertung(request):
     for i in bewertungen:
         sterne = i.rating
         art = i.art
-        kategorie = i.article.category.id
+        kategorie = i.article.category.name
         artikel = i.article.id
         identifiziert = i.identifiziert
         richtig = i.richtig
