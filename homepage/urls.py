@@ -24,4 +24,5 @@ urlpatterns = [
     path("neuerArtikel/<int:alt_id>", views.newArticle, name="newArticle"),
     # Willkommensseite
     path("welcome/", views.welcome, name="welcome"),
+    path("api/getbewertungen", views.getBewertung, name="getBewertung"),
 ]

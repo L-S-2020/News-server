@@ -139,6 +139,20 @@ def uploadArticle(request):
     else:
         return JsonResponse({"success": False})
 
+def getBewertung(request):
+    ausgabe = []
+    bewertungen = Bewertung.objects.all()
+    for i in bewertungen:
+        sterne = i.rating
+        art = i.art
+        kategorie = i.article.category.id
+        artikel = i.article.id
+        identifiziert = i.identifiziert
+        richtig = i.richtig
+        ausgabe.append({'sterne': sterne, 'art': art, 'kategorie': kategorie, 'identifiziert': identifiziert, 'richtig': richtig, 'artikel': artikel})
+    return JsonResponse({'bewertungen': ausgabe})
+
+
 # Dashboard
 # definiere Cache Variabeln
 cache_anzahl = 0
