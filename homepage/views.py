@@ -202,5 +202,3 @@ def aktualisieren(request):
         cache = {"anzahl": anzahl, "durchschnitt": durchschnitt, "durchschnitt_gpt": durchschnitt_gpt, "durchschnitt_mistral": durchschnitt_mistral, "durchschnitt_mensch": durchschnitt_mensch, "richtig": richtig_anzahl, "falsch": falsch_anzahl}
     # gebe den Cache zurück
     return JsonResponse(cache)
-
-
